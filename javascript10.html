@@ -3,18 +3,11 @@
   <head>
   </head>
   <body>
-    <script type="text/javascript">
-      function Seito(_namae, _seiseki) {
-          this.namae = _namae;
-          this.seiseki = _seiseki;
-      }
-      var kumi=[];
-      kumi[0]=new Seito("山田太郎",95);
-      kumi[1]=new Seito("田中一郎",73);
-      kumi[2]=new Seito("鈴木花子",86);
-      for(i=0;i<kumi.length;i++){
-          document.write(kumi[i].namae+"："+kumi[i].seiseki+"点<br>");
-      }
+    <div>1個目のdivタグです</div>
+    <div>2個目のdivタグです</div>
+    <div>3個目のdivタグです</div>
+    <script>
+      alert(document.getElementsByTagName("div")[1].firstChild.nodeValue);
     </script>
   </body>
 </html>
