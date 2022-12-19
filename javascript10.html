@@ -3,11 +3,14 @@
   <head>
   </head>
   <body>
-    <div>1個目のdivタグです</div>
-    <div>2個目のdivタグです</div>
-    <div>3個目のdivタグです</div>
+    <div id="main">
+      <div id="main_text">メインのdivタグです</div>
+    </div>
+    <div id="sub">
+      <div id="sub_text">サブのdivタグです</div>
+    </div>
     <script>
-      document.getElementsByTagName("div")[1].firstChild.nodeValue="ここが書き換わりました";
+      alert(document.getElementById("main_text").firstChild.nodeValue);
     </script>
   </body>
 </html>
