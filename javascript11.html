@@ -3,13 +3,29 @@
   <head>
   </head>
   <body>
-    var tajigen = new Array();
-    tajigen[0] = new Array();
-    tajigen[0][0] = 0;
-    tajigen[0][1] = 1;
-    tajigen[1] = new Array();
-    tajigen[1][0] = 10;
-    tajigen[1][1] = 11;
-    document.write(tajigen.join("/"));
+    <script type="text/javascript">
+      function Stack() {
+        this.elements = new Array();
+        this.length = 0;
+      }
+      Stack.prototype.push = function(value) {
+        this.elements[this.length] = value;
+        this.length++;
+      }
+      Stack.prototype.pop = function() {
+        var popvalue = this.elements[this.length - 1];
+        delete this.elements[this.length - 1];
+        this.length--;
+        return popvalue;
+      }
+     
+      var stack = new Stack();
+      stack.push(3);
+      stack.push(8);
+      stack.push(7);
+      stack.push(5);
+      document.write("1回目のpop = " + stack.pop() + "<br/>");
+      document.write("2回目のpop = " + stack.pop() + "<br/>");
+    </script>
   </body>
 </html>
