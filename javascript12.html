@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+  </head>
+  <body>
+    <html>
+      <body> 
+      <script type="text/javascript">
+        function Stack() {
+          this.elements = new Array();
+          this.length = 0;
+        }
+        Stack.prototype.push = function(value) {
+          this.elements[this.length] = value;
+          this.length++;
+        }
+        Stack.prototype.pop = function() {
+          var popvalue = this.elements[this.length - 1];
+          delete this.elements[this.length - 1];
+          this.length--;
+          return popvalue;
+        }
+       
+        var stack = new Stack();
+        stack.push(3);
+        stack.push(8);
+        stack.push(7);
+        stack.push(5);
+        document.write("1回目のpop = " + stack.pop() + "<br/>");
+        document.write("2回目のpop = " + stack.pop() + "<br/>");
+      </script>
+      </body>
+      </html> 
+  </body>
+</html>
