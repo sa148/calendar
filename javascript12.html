@@ -5,30 +5,36 @@
   <body>
     <html>
       <body> 
-      <script type="text/javascript">
-        function Stack() {
-          this.elements = new Array();
-          this.length = 0;
-        }
-        Stack.prototype.push = function(value) {
-          this.elements[this.length] = value;
-          this.length++;
-        }
-        Stack.prototype.pop = function() {
-          var popvalue = this.elements[this.length - 1];
-          delete this.elements[this.length - 1];
-          this.length--;
-          return popvalue;
-        }
-       
-        var stack = new Stack();
-        stack.push(3);
-        stack.push(8);
-        stack.push(7);
-        stack.push(5);
-        document.write("1回目のpop = " + stack.pop() + "<br/>");
-        document.write("2回目のpop = " + stack.pop() + "<br/>");
-      </script>
+        <script type="text/javascript">
+          function Queue() {
+            this.elements = new Array();
+            this.length = 0;
+          }
+          Queue.prototype.enqueue = function(value) {
+            this.elements[this.length] = value;
+            this.length++;
+          }
+          Queue.prototype.dequeue = function() {
+            var value = this.elements[0];
+            for (i in this.elements) {
+              if (i == 0) {
+                continue;
+              }
+              this.elements[i - 1] = this.elements[i];
+            }
+            delete this.elements[this.length];
+            this.length--;
+            return value;
+          }
+         
+          var queue = new Queue();
+          queue.enqueue(3);
+          queue.enqueue(8);
+          queue.enqueue(7);
+          queue.enqueue(5);
+          document.write("1回目のdequeue = " + queue.dequeue() + "<br/>");
+          document.write("2回目のdequeue = " + queue.dequeue() + "<br/>");
+        </script>
       </body>
       </html> 
   </body>
