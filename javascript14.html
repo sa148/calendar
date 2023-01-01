@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+  </head>
+  <body>
+    <script type="text/javascript">
+      function saidaikouyakusuu(a, b) {
+        display("saidaikouyakusuu", "計算中：" + a + "と" + b + "の最大公約数"); 
+        var r = a % b;
+        if (r == 0) {
+          return b;
+        }
+        return saidaikouyakusuu(b, r);
+      }
+      function display(id, str) {
+        var element = document.getElementById(id);
+        element.innerHTML += str + "<br/>";
+      }
+    </script>
+     
+    <div id="saidaikouyakusuu"></div>
+     
+    <script type="text/javascript">
+      display("saidaikouyakusuu", "最大公約数は" + saidaikouyakusuu(14, 21));
+    </script>  
+  </body>
+</html>
