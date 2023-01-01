@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+  </head>
+  <body>
+    <script type="text/javascript">
+      window.onload = function() {
+        var str = "";
+        var childNodes = document.body.childNodes;
+        for (i in childNodes) {
+          if (childNodes[i].tagName != undefined) {
+            str = str + "―" + childNodes[i].tagName + "<br/>";
+            var child = childNodes[i].firstChild;
+            while (child != null) {
+              if (child.tagName != undefined) {
+                str = str + "&nbsp;&nbsp;―" + child.tagName + "<br/>"; 
+              }
+              child = child.nextSibling;
+            }
+          }
+        }
+        document.getElementById("output").innerHTML = str;
+      }
+      </script> 
+      </head>
+      <body>
+      <p>
+      <a href="//www.atmarkit.co.jp">＠IT</a> 
+      </p>
+      <ul>
+      <li>1番目</li>
+      <li>2番目</li>
+      <li>3番目</li>
+      </ul>
+      <hr/>
+      DOMの解析結果
+      <br/>
+      <div id="output"></div>
+  </body>
+</html>
