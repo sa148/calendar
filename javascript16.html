@@ -2,51 +2,37 @@
 <html lang="ja">
   <head>
   </head>
-  <script type="text/javascript">
-    function changeColor() {
-      var current = document.body;
-      var stack = new Array();
-      var isPopped = false;
-      while (current != null) {
-        if (!isPopped) {
-          if (current.childNodes.length > 0) {
-            stack.push(current);
-            current = current.firstChild;
-            continue;
-          }
-        }
-        if (current.nodeType == 1) {
-          if (current.style.backgroundColor == "blue") {
-            current.style.backgroundColor = "red";
-          }
-        }
-        isPopped = false;
-        current = current.nextSibling;
-        if (current == null) {
-          current = stack.pop();
-          isPopped = true;
-        }
-      }
-    }
-  </script>
   <body>
-   
-  <form>
-  <table border="1">
-    <tr>
-      <td style="background-color: blue;">赤くしたい</td>
-      <td>赤くしない</td>
-    </tr>
-    <tr>
-      <td><span style="background-color: blue;">赤くなれ</span></td>
-    </tr>
-  </table>
-  <div style="width: 200px; border-style: solid;">
-  <span>ここは赤くしない</span>
-  </div>
-  <div id="test1"><span id="test2">タグを入れ子にする</span></div>
-  </form>
-  <input type="button" value="実行開始" onclick="changeColor()" />
-   
-  </body>
+    <script type="text/javascript">
+      var count = 0;
+      function startCalc() {
+        count = 0;
+        document.getElementById("disp").innerHTML = "";
+        var number = document.getElementById("number").value;
+        var start = Number(new Date());
+        display("disp", number + "のフィボナッチ数=" + fibonacci(number));
+        var end = Number(new Date());
+        display("disp", "実行時間：" + (end - start) + "ミリ秒");
+        display("disp", "計算回数：" + count);
+      }
+      function fibonacci(n) {
+        if (n < 1) {
+          return 0;
+        }
+        if (n == 1) {
+          return 1;
+        }
+        count++;
+        return fibonacci(n - 1) + fibonacci(n - 2);
+      }
+      function display(id, str) {
+        var element = document.getElementById(id);
+        element.innerHTML += str + "<br/>";
+      }
+    </script>
+    <input type="text" id="number">
+    番目のフィボナッチ数を計算する
+    <input type="submit" value="計算開始" onclick="startCalc()">
+    <div id="disp"></div>
+    </body>
 </html>
