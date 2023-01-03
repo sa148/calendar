@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+  </head>
+  <script type="text/javascript">
+    function changeColor() {
+      var current = document.body;
+      var stack = new Array();
+      var isPopped = false;
+      while (current != null) {
+        if (!isPopped) {
+          if (current.childNodes.length > 0) {
+            stack.push(current);
+            current = current.firstChild;
+            continue;
+          }
+        }
+        if (current.nodeType == 1) {
+          if (current.style.backgroundColor == "blue") {
+            current.style.backgroundColor = "red";
+          }
+        }
+        isPopped = false;
+        current = current.nextSibling;
+        if (current == null) {
+          current = stack.pop();
+          isPopped = true;
+        }
+      }
+    }
+  </script>
+  <body>
+   
+  <form>
+  <table border="1">
+    <tr>
+      <td style="background-color: blue;">赤くしたい</td>
+      <td>赤くしない</td>
+    </tr>
+    <tr>
+      <td><span style="background-color: blue;">赤くなれ</span></td>
+    </tr>
+  </table>
+  <div style="width: 200px; border-style: solid;">
+  <span>ここは赤くしない</span>
+  </div>
+  <div id="test1"><span id="test2">タグを入れ子にする</span></div>
+  </form>
+  <input type="button" value="実行開始" onclick="changeColor()" />
+   
+  </body>
+</html>
