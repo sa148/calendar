@@ -4,25 +4,19 @@
   </head>
   <body>
     <script type="text/javascript">
-      var fibonacciResult = new Array();
-      var count = 0;
       function startCalc() {
-        count = 0;
+        document.getElementById("disp").innerHTML = "";
+        var number = document.getElementById("number").value;
+        display("disp", number + "のフィボナッチ数=" + fibonacci(number));
+      }
+      function fibonacci(n) {
         fibonacciResult = new Array();
         fibonacciResult[0] = 0;
         fibonacciResult[1] = 1;
-        document.getElementById("disp").innerHTML = "";
-        var number = document.getElementById("number").value;
-        var start = Number(new Date());
-        display("disp", number + "のフィボナッチ数=" + fibonacci(number));
-        var end = Number(new Date());
-        display("disp", "実行時間：" + (end - start) + "ミリ秒");
-        display("disp", "計算回数：" + count);
-      }
-      function fibonacci(n) {
-        if (fibonacciResult[n] == undefined) {
-          count++;
-          fibonacciResult[n] = fibonacci(n - 1) + fibonacci(n - 2);
+        for (i = 2; i <= n; i++) {
+          fibonacciResult[i] =
+            fibonacciResult[i - 1]
+            + fibonacciResult[i - 2];
         }
         return fibonacciResult[n];
       }
@@ -31,7 +25,7 @@
         element.innerHTML += str + "<br/>";
       }
     </script>
-     
+      
     <input type="text" id="number">
     番目のフィボナッチ数を計算する
     <input type="submit" value="計算開始" onclick="startCalc()">
