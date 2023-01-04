@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+  </head>
+  <body>
+    <script type="text/javascript">
+      var fibonacciResult = new Array();
+      var count = 0;
+      function startCalc() {
+        count = 0;
+        fibonacciResult = new Array();
+        fibonacciResult[0] = 0;
+        fibonacciResult[1] = 1;
+        document.getElementById("disp").innerHTML = "";
+        var number = document.getElementById("number").value;
+        var start = Number(new Date());
+        display("disp", number + "のフィボナッチ数=" + fibonacci(number));
+        var end = Number(new Date());
+        display("disp", "実行時間：" + (end - start) + "ミリ秒");
+        display("disp", "計算回数：" + count);
+      }
+      function fibonacci(n) {
+        if (fibonacciResult[n] == undefined) {
+          count++;
+          fibonacciResult[n] = fibonacci(n - 1) + fibonacci(n - 2);
+        }
+        return fibonacciResult[n];
+      }
+      function display(id, str) {
+        var element = document.getElementById(id);
+        element.innerHTML += str + "<br/>";
+      }
+    </script>
+     
+    <input type="text" id="number">
+    番目のフィボナッチ数を計算する
+    <input type="submit" value="計算開始" onclick="startCalc()">
+    <div id="disp"></div>
+  </body>
+</html>
