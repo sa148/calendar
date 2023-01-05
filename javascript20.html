@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <script type="text/javascript">
+     
+    //clone：ディープコピー
+    Array.prototype.clone = function() {
+      function f() {}
+      f.prototype = Object(this);
+      return new f();
+    }
+     
+    //swap：配列の要素を入れ替える
+    Array.prototype.swap = function(i,j) {
+      var tmp = this[i];
+      this[i] = this[j];
+      this[j] = tmp;
+    } 
+     
+    Array.prototype.toString = function() {
+      var str = "";
+      for(var i=0; i < this.length; i++) {
+        if (i != 0) { str += ","; }
+        str += this[i];
+      }
+      return "[" + str + "]";
+     
+    }
+     
+    function Item(key, value) {
+      this.key = key;
+      this.value = value;
+    }
+     
+    Item.prototype.toString = function() {
+      return "{" + this.key + ":" + this.value + "}";
+    }
+     
+    Array.prototype.pushItem = function(key, value) {
+      this.push(new Item(key, value));
+    }
+     
+    //display：画面表示
+    Array.prototype.display = function(str) {
+      var element = document.getElementById(this.view_id);
+      element.innerHTML += str + "<br>";
+    }
+     
+    //配列生成
+    var array = [];
+    array.pushItem(1, "one");
+    array.pushItem(2, "two");
+    array.pushItem(3, "three");
+    array.pushItem(4, "four");
+    array.pushItem(5, "five");
+    array.pushItem(6, "six");
+    array.pushItem(7, "seven");
+     
+    function compare(a, b) {
+      return (a - b);
+    }
+    </script>
+    </head>
+     
+    <body>
+    <!-- ここから -->
+    </body>
+</html>
