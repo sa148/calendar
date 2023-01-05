@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <script type="text/javascript">
+    Array.prototype.clone = function() {
+      function f() {}
+      f.prototype = Object(this);
+      return new f();
+    }
+     
+    Array.prototype.swap = function(i,j) {
+      if(i == j) { return; }
+      var tmp = this[i];
+      this[i] = this[j];
+      this[j] = tmp;
+    }
+     
+    Array.prototype.toString = function() {
+      var str = "";
+      for(var i=0; i < this.length; i++) {
+        if (i != 0) { str += ","; }
+        str += this[i];
+      }
+      return "[" + str + "]";
+    }
+     
+    Array.prototype.display = function(str) {
+      if (this.view_id == undefined) { return; }
+      if (str == undefined) { str = this.toString(); }
+      var element = document.getElementById(this.view_id);
+      element.innerHTML += str + "<br>";
+    }
+     
+    function time(func, name, view_id) {
+      var start = new Number(new Date());
+      func();
+      var end = new Number(new Date());
+      var t = end - start;
+     
+      var element = document.getElementById(view_id);
+      element.innerHTML += name + "の処理時間:" + t + "<br>";
+    }
+     
+    function compare(a , b) {
+      return (a - b);
+    }
+     
+    //表示するための配列
+    var arrayForDisplay = new Array(10);
+    for(var i = 0; i<arrayForDisplay.length; i++) { arrayForDisplay[i] = i;}
+    arrayForDisplay.reverse();
+     
+    //時間計測用の配列
+    var arrayForTime = new Array(700);
+    for (var i = 0; i < arrayForTime.length; i++) {
+      arrayForTime[i] = Math.floor(Math.random() * arrayForTime.length);
+    }
+    </script> 
+    </head>
+    <body>
+     
+    <span id="kumikomi"></span>
+    <script type="text/javascript">
+    var kumikomi = arrayForTime.clone();
+    var func = function() { kumikomi.sort(compare); }
+    time(func, "組み込みのソート", "kumikomi");
+    </script> 
+    <!-- 末尾1 -->
+    </body> 
+    </html>
