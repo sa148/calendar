@@ -97,5 +97,42 @@ function findTextArea(text_id, search_id) {
   </script>
   <input type="button" onClick="findTextAreaKMP('area1','search');" value="findKMP">
   <!-- 末尾2 -->
+  <script type="text/javascript">
+    function BMSkip(str) {
+      var skip_offset = new Array();
+     
+      for (var i = 0; i < str.length-1; i++) {
+        skip_offset[str.charCodeAt(i)] = str.length - i - 1;
+      }
+     
+      this.skip = function(text, pos) {
+        var offset = skip_offset[text.charCodeAt(pos)];
+        return (offset != undefined) ? offset : str.length;
+      }
+    }
+     
+    String.prototype.findBM = function(str) {
+      var bm_skip = new BMSkip(str);
+      var last = str.length-1;
+      for(var pos = last; pos < this.length; pos += bm_skip.skip(this,pos)) {
+        var i = pos;
+        var j = last;
+        while (j >= 0) {
+          if (this.charAt(i) != str.charAt(j)) { break; }
+          i--;
+          j--;
+        }
+        if(j < 0) { return i+1; }
+      }
+      return null;
+    }
+    function findTextAreaBM(text_id, search_id) {
+      var text = getStringById(text_id);
+      var search = getStringById(search_id);
+      alert(text.findBM(search));
+    }
+    </script>
+    <input type="button" onClick="findTextAreaBM('area1','search');" value="findBM">
+    <!-- 末尾3 -->
 </body>
 </html>
